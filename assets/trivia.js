@@ -5,16 +5,16 @@
 // =============================
 var triviaGame = (function() {
 
-    let apiToken = "";
+    var apiToken = "";
     let scoreA = 0;
     let scoreB = 0;
     let scoreC = 0;
     let scoreD = 0;
 
     // grabs a question and processes it for other functions
-    function getQuestion (prefs) {
-        let token = getToken();
-        let apiUrl = "https://opentdb.com/api.php?amount=1";
+    async function getQuestion (prefs) {
+        let token = await getToken();
+        let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
         let Q = {};
 
         fetch(apiUrl)
@@ -23,19 +23,10 @@ var triviaGame = (function() {
                 throw new Error("Something went wrong retrieving a question!");
             }
 
-            response.json();
+            return response.json();
         })
         .then(data => {
-            Q = {
-                question: data.question,
-                answers: [
-                    data.correct_answer,
-                    data.incorrect_answers[0],
-                    data.incorrect_answers[1],
-                    data.incorrect_answers[2],
-                ],
-                correct: data.correct_answer
-            };
+            console.log(data.correct_answer);
         })
         .catch(error => {
             console.error(error);
@@ -50,22 +41,23 @@ var triviaGame = (function() {
         }
 
         // If there is no token, generate a new one
-        fetch("https://opentdb.com/api_token.php?command=request")
+        let tokenUrl = "https://opentdb.com/api_token.php?command=request";
+        apiToken = fetch(tokenUrl)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Something went wrong requesting the API token!");
                 }
-
-                response.json();
+                return response.json();
             })
             .then(data => {
-                apiToken = data.token;
-                return apiToken;
+                return data.token;
             })
             .catch(error => {
                 console.error(error);
             });
-    }
+        
+            return apiToken;
+        }
 
    
 
@@ -101,6 +93,6 @@ var triviaGame = (function() {
 
     // Expose any functions needed outside
     return {
-
+        getQuestion: getQuestion
     }
 })();
