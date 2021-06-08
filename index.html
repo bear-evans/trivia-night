@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drinks Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+<body>
+<main>
+
+    <h4 class="title is-4" id="drink-name"></h4>
+    <figure class="image is-128x128">
+        <img id="img-thumb" src="https://bulma.io/images/placeholders/128x128.png">
+      </figure>
+
+
+      <h4 class="title is-4">Ingredients</h4>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="ingredient-number">No.</abbr></th>
+            <th><abbr title="ingredient-name">Ingredient</abbr></th>   
+            <th><abbr title="ingredient-quantity">Quantity</abbr></th>            
+          </tr>
+        </thead>
+         <tbody>
+          <tr>
+            <th id="ing-no-1">1.</th>
+            <td id="ing-name-1"></td>
+            <td id="ing-qty-1"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-2">2.</th>
+            <td id="ing-name-2"></td>
+            <td id="ing-qty-2"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-3">3.</th>
+            <td id="ing-name-3"></td>
+            <td id="ing-qty-3"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-4">4.</th>
+            <td id="ing-name-4"></td>
+            <td id="ing-qty-4"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-5">5.</th>
+            <td id="ing-name-5"></td>
+            <td id="ing-qty-5"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-6">6.</th>
+            <td id="ing-name-6"></td>
+            <td id="ing-qty-6"></td>
+          </tr>
+          <tr>
+            <th id="ing-no-7">7.</th>
+            <td id="ing-name-7"></td>
+            <td id="ing-qty-7"></td>
+          </tr>
+         </tbody>
+      </table>
+
+      <h4 class="title is-4">Instructions</h4>
+      <p>Glass: <span id=glass-type></span></p>
+      <p id=instructions></p>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="./assets/drinks.js"></script>    
+</body>
+</html>
