@@ -6,6 +6,7 @@
 var triviaGame = (function() {
 
     var apiToken = "";
+    let qNum = 0;
     let scoreA = 0;
     let scoreB = 0;
     let scoreC = 0;
@@ -15,7 +16,6 @@ var triviaGame = (function() {
     async function getQuestion (prefs) {
         let token = await getToken();
         let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
-        let Q = {};
 
         fetch(apiUrl)
         .then(response => {
@@ -26,7 +26,13 @@ var triviaGame = (function() {
             return response.json();
         })
         .then(data => {
-            printQuestion(data);
+            console.log(data);
+            let question = data.results[0].question;
+            let type = data.results[0].type;
+            let correct = data.results[0].correct_answer;
+            let answers = incorrect_answers;
+            printQuestion(question, type);
+            printAnswers(correct, answers);
         })
         .catch(error => {
             console.error(error);
@@ -62,18 +68,49 @@ var triviaGame = (function() {
    
 
     // Prints the question to the question box
-    function printQuestion (data) {
-        printAnswers(data); // Passes the data off to print answers
+    function printQuestion (question, type) {
+    // TODO: CHANGE VARIABLES TO MATCH THE NECESSARY DOM ELEMENTS
+    let body = $("body");
+
+        qNum = qNum + 1;
+
+        body.append("Question " + qNum + " - " + type);
+        body.append("The Question is: </br>" + question);
     }
 
     // randomizes the answers and colorizes the correct one
-    function printAnswers(data) {
+    function printAnswers(correct, answers) {
+        $("answer-list"); // TODO: set to the div of the answer box
 
+        answers.push(correct);
+
+        // Shuffles the answers in the array so the correct answer
+        // isn't always first
+        for (var i = answers.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = answers[j];
+            answers[i] = answers[j];
+            answers[j] = t;
+        }
     }
 
-    // saves the team scores to memory in case of accidental closure or refresh
-    function saveScore () {
-        // saving goes here
+    // saves the team scores and question number to memory in case of accidental closure or refresh
+    function saveState () {
+        let data = {
+            number: qNum,
+            Team1: scoreA,
+            Team2: scoreB,
+            Team3: scoreC,
+            Team4: scoreD,
+        };
+        localStorage.setItem("trivia-data", JSON.stringify(data));
+        // TODO: Also save questions and answer options?
+        loadState();
+    }
+
+    // loads scores 
+    function loadState() {
+
     }
 
     // increases the score of the appropriate team
