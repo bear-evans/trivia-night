@@ -30,7 +30,7 @@ var triviaGame = (function() {
             let question = data.results[0].question;
             let type = data.results[0].type;
             let correct = data.results[0].correct_answer;
-            let answers = incorrect_answers;
+            let answers = data.results[0].incorrect_answers;
             printQuestion(question, type);
             printAnswers(correct, answers);
         })
@@ -69,7 +69,7 @@ var triviaGame = (function() {
 
     // Prints the question to the question box
     function printQuestion (question, type) {
-    // TODO: CHANGE VARIABLES TO MATCH THE NECESSARY DOM ELEMENTS
+    // FIXME: CHANGE VARIABLES TO MATCH THE NECESSARY DOM ELEMENTS
     let body = $("body");
 
         qNum = qNum + 1;
@@ -80,7 +80,7 @@ var triviaGame = (function() {
 
     // randomizes the answers and colorizes the correct one
     function printAnswers(correct, answers) {
-        $("answer-list"); // TODO: set to the div of the answer box
+        let answerContainer = $("#answer-list"); // FIXME: set to the div of the answer box
 
         answers.push(correct);
 
@@ -91,6 +91,18 @@ var triviaGame = (function() {
             var t = answers[j];
             answers[i] = answers[j];
             answers[j] = t;
+        }
+
+        // Cycles through the answers, creating boxes. Gives special styling to the correct answer.
+        for (var i = 0; i < answers.length; i++) {
+            //FIXME: Change div classes to bulma styling options
+            let box;
+            if (answers[i] == correct) {
+                box = $("<div class='answer-box correct-answer'>" + answers[i] + "</div>");
+            } else {
+                box = $("<div class='answer-box'>" + answers[i] + "</div>");
+            }
+            answerContainer.append(box);
         }
     }
 
