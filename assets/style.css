@@ -1,0 +1,8 @@
+.answer-box {
+    padding:2em;
+    background-color: lightslategray;
+}
+
+.correct-answer-show {
+    background-color:lightgreen !important; 
+}

@@ -7,10 +7,7 @@ var triviaGame = (function() {
 
     var apiToken = "";
     let qNum = 0;
-    let scoreA = 0;
-    let scoreB = 0;
-    let scoreC = 0;
-    let scoreD = 0;
+    let scores = [];
 
     // grabs a question (and possibly a session token) and processes it for other functions
     async function getQuestion (prefs) {
@@ -70,25 +67,38 @@ var triviaGame = (function() {
     // Prints the question to the question box
     function printQuestion (question, type) {
     // FIXME: CHANGE VARIABLES TO MATCH THE NECESSARY DOM ELEMENTS
-    let body = $("body");
+        let qContainer = $("#question-box");
+        let qHeader = $("#question-header");
+        let typeText = "";
+
+        if (type == "boolean") {
+            typeText = "True or False";
+        } else if (type == "multiple") {
+            typeText = "Multiple Choice"
+        }
+
+        qHeader.empty();
+        qContainer.empty();
 
         qNum = qNum + 1;
 
-        body.append("Question " + qNum + " - " + type);
-        body.append("The Question is: </br>" + question);
+        qHeader.append("Question " + qNum + " - " + typeText);
+        qContainer.append(question);
     }
 
     // randomizes the answers and colorizes the correct one
     function printAnswers(correct, answers) {
         let answerContainer = $("#answer-list"); // FIXME: set to the div of the answer box
-
+        answerContainer.empty();
         answers.push(correct);
+
+        console.log("Answers: " + answers);
 
         // Shuffles the answers in the array so the correct answer
         // isn't always first
         for (var i = answers.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
-            var t = answers[j];
+            var t = answers[i];
             answers[i] = answers[j];
             answers[j] = t;
         }
@@ -98,22 +108,35 @@ var triviaGame = (function() {
             //FIXME: Change div classes to bulma styling options
             let box;
             if (answers[i] == correct) {
+                console.log(answers[i] + " === " + correct);
                 box = $("<div class='answer-box correct-answer'>" + answers[i] + "</div>");
             } else {
+                console.log(answers[i] + " === " + correct);
                 box = $("<div class='answer-box'>" + answers[i] + "</div>");
             }
             answerContainer.append(box);
         }
     }
 
+    // Reveals the correct answer when a button is pressed
+    function revealAnswer() {
+        let correctBox = $(".correct-answer");
+
+        correctBox.addClass("correct-answer-show");
+    }
+
+    // Toggles the team's points buttons when clicked
+    function toggleTeam(event) {
+        event.preventDefault();
+
+        event.target.toggleClass("is-success");
+    }
+
     // saves the team scores and question number to memory in case of accidental closure or refresh
     function saveState () {
         let data = {
             number: qNum,
-            Team1: scoreA,
-            Team2: scoreB,
-            Team3: scoreC,
-            Team4: scoreD,
+            score: scores
         };
         localStorage.setItem("trivia-data", JSON.stringify(data));
         // TODO: Also save questions and answer options?
@@ -125,9 +148,14 @@ var triviaGame = (function() {
 
     }
 
-    // increases the score of the appropriate team
+    // increases the score of the appropriate team(s)
     function addScore (event) {
+        $(".team-label").each(function(i) {
+            if ($(this).hasClass("is-success")) { //FIXME: Change to whatever toggle class is being used
+                scores[i] = scores[i] + 1;
+            }});
 
+        saveState();
     }
 
     // Saves parameters to memory
@@ -142,8 +170,10 @@ var triviaGame = (function() {
 
     // Expose any functions needed outside
     return {
-        getQuestion: getQuestion
+        getQuestion: getQuestion,
+        revealAnswer: revealAnswer
     }
 })();
 
-triviaGame.getQuestion();
+$("#new-button").on('click', triviaGame.getQuestion);
+$("#reveal-button").on('click', triviaGame.revealAnswer);
