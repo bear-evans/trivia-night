@@ -11,7 +11,7 @@ var triviaGame = (function() {
     let scoreC = 0;
     let scoreD = 0;
 
-    // grabs a question and processes it for other functions
+    // grabs a question (and possibly a session token) and processes it for other functions
     async function getQuestion (prefs) {
         let token = await getToken();
         let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
@@ -26,7 +26,7 @@ var triviaGame = (function() {
             return response.json();
         })
         .then(data => {
-            console.log(data.correct_answer);
+            printQuestion(data);
         })
         .catch(error => {
             console.error(error);
@@ -35,14 +35,14 @@ var triviaGame = (function() {
     }
 
     // Retrieves a session token or requests a new one if expired
-    function getToken () {
+    async function getToken () {
         if (apiToken != "") {
             return apiToken; // stop if there was already a token
         }
 
         // If there is no token, generate a new one
         let tokenUrl = "https://opentdb.com/api_token.php?command=request";
-        apiToken = fetch(tokenUrl)
+        apiToken = await fetch(tokenUrl)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Something went wrong requesting the API token!");
@@ -62,12 +62,12 @@ var triviaGame = (function() {
    
 
     // Prints the question to the question box
-    function printQuestion () {
-
+    function printQuestion (data) {
+        printAnswers(data); // Passes the data off to print answers
     }
 
     // randomizes the answers and colorizes the correct one
-    function printAnswers() {
+    function printAnswers(data) {
 
     }
 
@@ -96,3 +96,5 @@ var triviaGame = (function() {
         getQuestion: getQuestion
     }
 })();
+
+triviaGame.getQuestion();
