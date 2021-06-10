@@ -7,7 +7,7 @@ var triviaGame = (function() {
 
     var apiToken = "";
     let qNum = 0;
-    let scores = [];
+    let scores = [ 0, 0, 0, 0 ];
 
     // grabs a question (and possibly a session token) and processes it for other functions
     async function getQuestion (prefs) {
@@ -28,6 +28,7 @@ var triviaGame = (function() {
             let type = data.results[0].type;
             let correct = data.results[0].correct_answer;
             let answers = data.results[0].incorrect_answers;
+            // parses data and sends them to the appropriate functions
             printQuestion(question, type);
             printAnswers(correct, answers);
         })
@@ -71,6 +72,7 @@ var triviaGame = (function() {
         let qHeader = $("#question-header");
         let typeText = "";
 
+        // Checks what type of question for the header
         if (type == "boolean") {
             typeText = "True or False";
         } else if (type == "multiple") {
@@ -80,7 +82,7 @@ var triviaGame = (function() {
         qHeader.empty();
         qContainer.empty();
 
-        qNum = qNum + 1;
+        qNum = qNum + 1; // increase the question number
 
         qHeader.append("Question " + qNum + " - " + typeText);
         qContainer.append(question);
@@ -123,39 +125,58 @@ var triviaGame = (function() {
         let correctBox = $(".correct-answer");
 
         correctBox.addClass("correct-answer-show");
+        $("#tally-button").removeClass("is-hidden");
     }
 
     // Toggles the team's points buttons when clicked
     function toggleTeam(event) {
         event.preventDefault();
 
-        event.target.toggleClass("is-success");
+        $(event.target).toggleClass("is-success");
     }
 
     // saves the team scores and question number to memory in case of accidental closure or refresh
     function saveState () {
         let data = {
-            number: qNum,
-            score: scores
+            number: qNum + 1,
+            score: scores,
+            token: apiToken
         };
         localStorage.setItem("trivia-data", JSON.stringify(data));
+
         // TODO: Also save questions and answer options?
         loadState();
     }
 
-    // loads scores 
+    // loads scores from memory
     function loadState() {
+        // TODO: retrieve scores from memory
+        renderScores();
+    }
 
+    function renderScores() {
+        let scoreBox = $("#score-box");
+
+        scoreBox.empty();
+
+        scoreBox.append($("<div class='team-score'>Team 1: " + scores[0] + "</div>"));
+        scoreBox.append($("<div class='team-score'>Team 2: " + scores[1] + "</div>"));
+        scoreBox.append($("<div class='team-score'>Team 3: " + scores[2] + "</div>"));
+        scoreBox.append($("<div class='team-score'>Team 4: " + scores[3] + "</div>"));
     }
 
     // increases the score of the appropriate team(s)
-    function addScore (event) {
+    function tallyScore () {
+        // Checks for the toggled states of the team buttons and increments the associated score
         $(".team-label").each(function(i) {
             if ($(this).hasClass("is-success")) { //FIXME: Change to whatever toggle class is being used
                 scores[i] = scores[i] + 1;
-            }});
-
+                $(this).removeClass("is-success");
+        }});
+        
+        $("#tally-button").addClass("is-hidden");
         saveState();
+        getQuestion();
     }
 
     // Saves parameters to memory
@@ -171,9 +192,13 @@ var triviaGame = (function() {
     // Expose any functions needed outside
     return {
         getQuestion: getQuestion,
-        revealAnswer: revealAnswer
+        revealAnswer: revealAnswer,
+        toggleTeam: toggleTeam,
+        tallyScore: tallyScore
     }
 })();
 
+$("#tally-button").on('click', triviaGame.tallyScore);
+$(".team-label").on('click', triviaGame.toggleTeam);
 $("#new-button").on('click', triviaGame.getQuestion);
 $("#reveal-button").on('click', triviaGame.revealAnswer);
