@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trivia Night!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
 
@@ -70,16 +71,52 @@
 
     <div class="columns">
         <div class="column is-3 has-background-success-light">
+
+         
+          <div class="coctail-buttons">
+            <button class="button is-primary is-rounded">New Cocktail</button>
+            <button class="button is-primary is-rounded">Hide</button>
+          </div>
+
             <h1 class="cocktail-name">Cocktail Name</h1>
             <img src="assets/images/Test_image.jpg">
-            <ul>
-                <li>Ingredient 1</li>
-                <li>Ingredient 2</li>
-                <li>Ingredient 3</li>
-                <li>Ingredient 4</li>
-                <li>Ingredient 5</li>
-                <li>Ingredient 6</li>
-            </ul>
+            <table>
+              <tr>
+                <th>Ingredient Number</th>
+                <th>Ingredient name</th>
+                <th>Quantity</th>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+              </tr>
+            </table>
 
 
         </div>
@@ -87,7 +124,66 @@
 
 
         <div class="column is-9 has-background-info-dark">
-            <h2>test</h2>
+
+          <div class="container">
+            <div id="question-container" class="hide">
+                <div id="question">
+                  <h1 id="question-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                    Voluptas perferendis ab rem eaque distinctio quisquam exercitationem nostrum, 
+                    odio repellat consequatur fugiat blanditiis nulla vitae voluptatibus quo. 
+                    Dolores explicabo maxime voluptatibus.</h1>
+                </div>
+
+                <div id="answers-text">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                </div>
+
+                <hr>
+                <div id="team-buttons" class="btn-column">
+                    <button class="btn" id = "teamOne">Team 1</button>
+                    <button class="btn" id = "teamTwo">Team 2</button>
+                    <button class="btn" id = "teamThree">Team 3</button>
+                    <button class="btn" id = "teamFour">Team 4</button>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="scores">
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
         </div>
     </div>
       
