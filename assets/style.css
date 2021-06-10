@@ -1,14 +1,47 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
-
-.answer-box {
-    padding:2em;
-    background-color: lightslategray;
+.cocktail-name {
+  font-size: 32px;
+  margin: 20px;
 }
 
-.correct-answer-show {
-    background-color:lightgreen !important; 
+.coctail-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
 }
 
-.hide {
-    display: none;
+th {
+  border-bottom: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+}
+
+h1#question-text {
+  margin: 30px;
+  font-weight: bolder;
+}
+
+p#answers-text {
+  margin: 50px;
+  font-weight: bold;
+}
+
+div#team-buttons {
+  display: flex;
+}
+
+div#team-buttons button {
+  margin: 35px;
+  width: 300px;
+  height: 75px;
+  background-color: lightblue;
+  font-size: large;
+  border-radius: 35px;
+}
+
+.scores {
+  margin: 200px;
 }
