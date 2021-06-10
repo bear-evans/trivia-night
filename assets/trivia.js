@@ -10,8 +10,12 @@ var triviaGame = (function() {
     let scores = [ 0, 0, 0, 0 ];
 
     // grabs a question (and possibly a session token) and processes it for other functions
-    async function getQuestion (prefs) {
+    async function getQuestion () {
         let token = await getToken();
+
+        let prefs = getSettings();
+        // TODO: Parse the settings returned and add as parameters
+
         let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
 
         fetch(apiUrl)
@@ -23,7 +27,7 @@ var triviaGame = (function() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            console.log(data); //TODO: Remove this
             let question = data.results[0].question;
             let type = data.results[0].type;
             let correct = data.results[0].correct_answer;
@@ -79,6 +83,7 @@ var triviaGame = (function() {
             typeText = "Multiple Choice"
         }
 
+        // Empty all previous content
         qHeader.empty();
         qContainer.empty();
 
@@ -88,16 +93,14 @@ var triviaGame = (function() {
         qContainer.append(question);
     }
 
-    // randomizes the answers and colorizes the correct one
+    // randomizes the answers and marks the correct one for revealing
     function printAnswers(correct, answers) {
         let answerContainer = $("#answer-list"); // FIXME: set to the div of the answer box
         answerContainer.empty();
         answers.push(correct);
 
-        console.log("Answers: " + answers);
-
         // Shuffles the answers in the array so the correct answer
-        // isn't always first
+        // isn't always in the same spot
         for (var i = answers.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
             var t = answers[i];
@@ -110,11 +113,9 @@ var triviaGame = (function() {
             //FIXME: Change div classes to bulma styling options
             let box;
             if (answers[i] == correct) {
-                console.log(answers[i] + " === " + correct);
-                box = $("<div class='answer-box correct-answer'>" + answers[i] + "</div>");
+                box = $("<div class='card-footer-item correct-answer'>" + answers[i] + "</div>");
             } else {
-                console.log(answers[i] + " === " + correct);
-                box = $("<div class='answer-box'>" + answers[i] + "</div>");
+                box = $("<div class='card-footer-item'>" + answers[i] + "</div>");
             }
             answerContainer.append(box);
         }
@@ -124,14 +125,14 @@ var triviaGame = (function() {
     function revealAnswer() {
         let correctBox = $(".correct-answer");
 
-        correctBox.addClass("correct-answer-show");
+        correctBox.addClass("has-background-success-light");
         $("#tally-button").removeClass("is-hidden");
     }
 
     // Toggles the team's points buttons when clicked
+    // This is used when tallying scores
     function toggleTeam(event) {
         event.preventDefault();
-
         $(event.target).toggleClass("is-success");
     }
 
@@ -173,7 +174,8 @@ var triviaGame = (function() {
                 scores[i] = scores[i] + 1;
                 $(this).removeClass("is-success");
         }});
-        
+
+        // Hides the tally button
         $("#tally-button").addClass("is-hidden");
         saveState();
         getQuestion();
@@ -181,12 +183,12 @@ var triviaGame = (function() {
 
     // Saves parameters to memory
     function setSettings() {
-
+        // TODO: Save settings
     }
 
     // loads parameters from memory for the API calls
     function getSettings() {
-
+        // TODO: Load settings from memory
     }
 
     // Expose any functions needed outside
@@ -202,3 +204,5 @@ $("#tally-button").on('click', triviaGame.tallyScore);
 $(".team-label").on('click', triviaGame.toggleTeam);
 $("#new-button").on('click', triviaGame.getQuestion);
 $("#reveal-button").on('click', triviaGame.revealAnswer);
+
+triviaGame.getQuestion();
