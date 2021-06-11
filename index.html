@@ -37,8 +37,8 @@
               Random Cocktail
             </a>
       
-            <a class="navbar-item">
-              Random Question
+            <a id="settings-show" class="navbar-item">
+              Trivia Settings
             </a>
       
             <div class="navbar-item has-dropdown is-hoverable">
@@ -122,71 +122,71 @@
         </div>
 
 
-
+<!-- Main Trivia Container -->
         <div class="column is-9 has-background-info-dark">
-
+          <div class="block"></div>
           <div class="container">
-            <div id="question-container" class="hide">
-                <div id="question">
-                  <h1 id="question-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                    Voluptas perferendis ab rem eaque distinctio quisquam exercitationem nostrum, 
-                    odio repellat consequatur fugiat blanditiis nulla vitae voluptatibus quo. 
-                    Dolores explicabo maxime voluptatibus.</h1>
-                </div>
+          <!-- Trivia Question Card -->
 
-                <div id="answers-text">
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                </div>
+          <div id="question-container" class="card">
+              <div id="question-header" class="card-header has-background-info">
+                <!-- Header is populated by JS -->
+              </div>
 
-                <hr>
-                <div id="team-buttons" class="btn-column">
-                    <button class="btn" id = "teamOne">Team 1</button>
-                    <button class="btn" id = "teamTwo">Team 2</button>
-                    <button class="btn" id = "teamThree">Team 3</button>
-                    <button class="btn" id = "teamFour">Team 4</button>
-                </div>
-            </div>
+              <div id="question-box" class="card-content">
+                  <!-- Question box is populated by JS -->
+              </div>
+              <div id="answer-list" class="card-footer">
+                  <!-- Answer list is populated by JS -->
+              </div>
           </div>
 
+          <div class="block"></div>
 
-          <div class="scores">
-
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-              </div>
+          <div class="box" id="game-buttons">
+            <div id="instructions">
+              <!-- The Instructions change with Javascript -->
+              <p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>
             </div>
 
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-                </div>
-              </div>
-            </div>
+            <!-- These buttons are shown or hidden by Javascript -->
+            <button id="new-question-button" class="button is-info">New Question</button>
+            <button id="reveal-button" class="button is-info">Reveal Answer</button>
+            <button id="tally-button" class="button is-info is-hidden">Tally Points</button>
 
           </div>
 
-
+          <div id="team-buttons" class="btn-column">
+            <button class="button team-label" id = "teamOne">Team 1</button>
+            <button class="button team-label" id = "teamTwo">Team 2</button>
+            <button class="button team-label" id = "teamThree">Team 3</button>
+            <button class="button team-label" id = "teamFour">Team 4</button>
+          </div>
         </div>
+
+
+          <div id="score-box" class="box is-pulled-right">
+            <!-- Scores automatically populated by JS -->
+          </div>
     </div>
-      
+
+    <!-- BEGIN TRIVIA MODAL SECTION -->
+    <div class="modal" id="trivia-settings">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Trivia Settings</p>
+          <button id="settings-cancel" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          Trivia Settings go here!
+        </section>
+        <footer class="modal-card-foot">
+          <button id="settings-save" class="button is-success">Save Changes</button>
+        </footer>
+      </div>
+    </div>
+    <!-- BEGIN TRIVIA MODAL SECTION -->
 
 
 <!--
@@ -207,7 +207,7 @@
     <div class="column is-three-quarters has-background-primary-dark">is-three-quarters</div>
   </div>
 -->
-
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="assets/trivia.js"></script>
   </body>
 </html>

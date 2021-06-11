@@ -9,6 +9,19 @@ var triviaGame = (function() {
     let qNum = 0;
     let scores = [ 0, 0, 0, 0 ];
 
+    // Initializes the trivia module
+    function init() {
+        // Button event listeners
+        $("#tally-button").on('click', tallyScore);
+        $(".team-label").on('click', toggleTeam);
+        $("#new-question-button").on('click', getQuestion);
+        $("#reveal-button").on('click', revealAnswer);
+        $("#settings-cancel").on('click', closeModal);
+        $("#settings-save").on('click', saveModal);
+        $("#settings-show").on('click', showModal);
+
+        getQuestion();
+    }
     // grabs a question (and possibly a session token) and processes it for other functions
     async function getQuestion () {
         let token = await getToken();
@@ -71,7 +84,6 @@ var triviaGame = (function() {
 
     // Prints the question to the question box
     function printQuestion (question, type) {
-    // FIXME: CHANGE VARIABLES TO MATCH THE NECESSARY DOM ELEMENTS
         let qContainer = $("#question-box");
         let qHeader = $("#question-header");
         let typeText = "";
@@ -89,13 +101,13 @@ var triviaGame = (function() {
 
         qNum = qNum + 1; // increase the question number
 
-        qHeader.append("Question " + qNum + " - " + typeText);
+        qHeader.append("<div class='card-header-title has-text-white'>Question " + qNum + " - " + typeText + "</div>");
         qContainer.append(question);
     }
 
     // randomizes the answers and marks the correct one for revealing
     function printAnswers(correct, answers) {
-        let answerContainer = $("#answer-list"); // FIXME: set to the div of the answer box
+        let answerContainer = $("#answer-list");
         answerContainer.empty();
         answers.push(correct);
 
@@ -110,7 +122,6 @@ var triviaGame = (function() {
 
         // Cycles through the answers, creating boxes. Gives special styling to the correct answer.
         for (var i = 0; i < answers.length; i++) {
-            //FIXME: Change div classes to bulma styling options
             let box;
             if (answers[i] == correct) {
                 box = $("<div class='card-footer-item correct-answer'>" + answers[i] + "</div>");
@@ -123,10 +134,12 @@ var triviaGame = (function() {
 
     // Reveals the correct answer when a button is pressed
     function revealAnswer() {
-        let correctBox = $(".correct-answer");
-
-        correctBox.addClass("has-background-success-light");
+        $(".correct-answer").addClass("has-background-success");
         $("#tally-button").removeClass("is-hidden");
+        $("#reveal-button").addClass("is-hidden");
+        $("#new-question-button").addClass("is-hidden");
+        $("#instructions").empty();
+        $("#instructions").append($("<p>Select the teams that got it right. When you're ready, click the button to tally the scores and start the next round.</p>"))
     }
 
     // Toggles the team's points buttons when clicked
@@ -160,10 +173,10 @@ var triviaGame = (function() {
 
         scoreBox.empty();
 
-        scoreBox.append($("<div class='team-score'>Team 1: " + scores[0] + "</div>"));
-        scoreBox.append($("<div class='team-score'>Team 2: " + scores[1] + "</div>"));
-        scoreBox.append($("<div class='team-score'>Team 3: " + scores[2] + "</div>"));
-        scoreBox.append($("<div class='team-score'>Team 4: " + scores[3] + "</div>"));
+        scoreBox.append($("<div class='team-score'><span class='team-score-header'>Team 1:</span> " + scores[0] + "</div>"));
+        scoreBox.append($("<div class='team-score'><span class='team-score-header'>Team 2:</span> " + scores[1] + "</div>"));
+        scoreBox.append($("<div class='team-score'><span class='team-score-header'>Team 3:</span> " + scores[2] + "</div>"));
+        scoreBox.append($("<div class='team-score'><span class='team-score-header'>Team 4:</span> " + scores[3] + "</div>"));
     }
 
     // increases the score of the appropriate team(s)
@@ -175,10 +188,32 @@ var triviaGame = (function() {
                 $(this).removeClass("is-success");
         }});
 
-        // Hides the tally button
         $("#tally-button").addClass("is-hidden");
+        $("#new-question-button").removeClass("is-hidden");
+        $("#reveal-button").removeClass("is-hidden");
+        $("#instructions").empty();
+        $("#instructions").append($("<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"))
         saveState();
         getQuestion();
+    }
+
+    // Shows the settings modal and loads the settings into the form
+    function showModal() {
+        $("html").addClass("is-clipped");
+        $("#trivia-settings").addClass("is-active");
+    }
+
+    // Handles closing the modal
+    function closeModal() {
+        $("html").removeClass("is-clipped");
+        $("#trivia-settings").removeClass("is-active");
+
+    }
+
+    // Handles saving the settings and closing the modal
+    function saveModal() {
+        setSettings();
+        closeModal();
     }
 
     // Saves parameters to memory
@@ -193,6 +228,7 @@ var triviaGame = (function() {
 
     // Expose any functions needed outside
     return {
+        init: init,
         getQuestion: getQuestion,
         revealAnswer: revealAnswer,
         toggleTeam: toggleTeam,
@@ -200,9 +236,4 @@ var triviaGame = (function() {
     }
 })();
 
-$("#tally-button").on('click', triviaGame.tallyScore);
-$(".team-label").on('click', triviaGame.toggleTeam);
-$("#new-button").on('click', triviaGame.getQuestion);
-$("#reveal-button").on('click', triviaGame.revealAnswer);
-
-triviaGame.getQuestion();
+triviaGame.init();
