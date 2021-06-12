@@ -31,16 +31,17 @@ p#answers-text {
 
 div#team-buttons {
   display: flex;
+  flex-direction: column;
 }
 
-div#team-buttons button {
+/* div#team-buttons button {
   margin: 35px;
   width: 300px;
   height: 75px;
   background-color: lightblue;
   font-size: large;
   border-radius: 35px;
-}
+} */
 
 .scores {
   margin: 200px;
