@@ -6,6 +6,7 @@
     <title>Trivia Night!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
   </head>
   <body>
 
@@ -20,7 +21,7 @@
         </div>
     </section>
       
-    <nav class="navbar has-background-primary-dark" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
         
       
@@ -70,7 +71,7 @@
 
 
     <div class="columns">
-        <div class="column is-3 has-background-success-light">
+        <div class="column is-3">
 
          
           <div class="coctail-buttons">
@@ -123,13 +124,13 @@
 
 
 <!-- Main Trivia Container -->
-        <div class="column is-9 has-background-info-dark">
+        <div class="column is-9">
           <div class="block"></div>
           <div class="container">
           <!-- Trivia Question Card -->
 
           <div id="question-container" class="card">
-              <div id="question-header" class="card-header has-background-info">
+              <div id="question-header" class="card-header has-background-primary">
                 <!-- Header is populated by JS -->
               </div>
 
@@ -151,9 +152,9 @@
             <div class="block"></div>
             <!-- These buttons are shown or hidden by Javascript -->
             <div class="container is-flex is-justify-content-space-evenly">
-              <button id="reveal-button" class="button is-info">Reveal Answer</button>
-              <button id="new-question-button" class="button is-info">New Question</button>
-              <button id="tally-button" class="button is-info is-hidden">Tally Points</button>  
+              <button id="reveal-button" class="button is-primary">Reveal Answer</button>
+              <button id="new-question-button" class="button is-primary">New Question</button>
+              <button id="tally-button" class="button is-danger is-hidden">Tally Points</button>  
             </div>
           </div>
 

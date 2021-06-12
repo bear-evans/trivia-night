@@ -65,7 +65,7 @@ var triviaGame = (function () {
   async function getToken() {
     if (apiToken != "") {
       return apiToken; // stop if there was already a token
-    }
+    };
 
     // If there is no token, generate a new one
     let tokenUrl = "https://opentdb.com/api_token.php?command=request";
