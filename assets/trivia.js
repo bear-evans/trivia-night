@@ -19,6 +19,7 @@ var triviaGame = (function () {
     $("#settings-save").on("click", saveModal);
     $("#settings-show").on("click", showModal);
 
+    loadState();
     getQuestion();
   }
   // grabs a question (and possibly a session token) and processes it for other functions
@@ -174,14 +175,15 @@ var triviaGame = (function () {
       token: apiToken,
     };
     localStorage.setItem("trivia-data", JSON.stringify(data));
-
-    // TODO: Also save questions and answer options?
     loadState();
   }
 
   // loads scores from memory
   function loadState() {
-    // TODO: retrieve scores from memory
+    let data = JSON.parse(localStorage.getItem("trivia-data"));
+    qNum = data.number;
+    scores = data.score;
+    apiToken = data.token;
     renderScores();
   }
 
