@@ -78,11 +78,11 @@
   <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
 <div class="control">
   <label class="radio">
-    <input type="radio" name="type" value="by-drink" checked>
+    <input type="radio" class="search-type" name="type" value="by-drink" checked>
     Drink Name
   </label>
   <label class="radio">
-    <input type="radio" name="type" value="by-ingredient">
+    <input type="radio" class="search-type" name="type" value="by-ingredient">
     Ingredient
   </label>
 </div>
@@ -95,6 +95,32 @@
 
 
 </main>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Select <span id="drink-modal-title"></span></p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+      <ul id="modal-list">
+        <li><button class="button is-text selection" id="select-0"></button></li>
+        <li><button class="button is-text selection" id="select-1"></button></li>
+        <li><button class="button is-text selection" id="select-2"></button></li>
+        <li><button class="button is-text selection" id="select-3"></button></li>
+        <li><button class="button is-text selection" id="select-4"></button></li>
+      </ul>
+
+
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Select</button>
+      <button class="button" id="cancel-button">Cancel</button>
+    </footer>
+  </div>
+</div>
 
 
 
