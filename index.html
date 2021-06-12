@@ -1,101 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Drinks Test</title>
+    <title>Trivia Night!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-</head>
-<body>
-<main>
 
-    <h4 class="title is-4" id="drink-name"></h4>
-    <figure class="image is-128x128">
-        <img id="img-thumb" src="https://bulma.io/images/placeholders/128x128.png">
-      </figure>
+  <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
 
-
-      <h4 class="title is-4">Ingredients</h4>
-
-    <table class="table">
-        <thead>
-          <tr>
-            <th><abbr title="ingredient-number">No.</abbr></th>
-            <th><abbr title="ingredient-name">Ingredient</abbr></th>   
-            <th><abbr title="ingredient-quantity">Quantity</abbr></th>            
-          </tr>
-        </thead>
-         <tbody>
-          <tr>
-            <th id="ing-no-1">1.</th>
-            <td id="ing-name-1"></td>
-            <td id="ing-qty-1"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-2">2.</th>
-            <td id="ing-name-2"></td>
-            <td id="ing-qty-2"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-3">3.</th>
-            <td id="ing-name-3"></td>
-            <td id="ing-qty-3"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-4">4.</th>
-            <td id="ing-name-4"></td>
-            <td id="ing-qty-4"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-5">5.</th>
-            <td id="ing-name-5"></td>
-            <td id="ing-qty-5"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-6">6.</th>
-            <td id="ing-name-6"></td>
-            <td id="ing-qty-6"></td>
-          </tr>
-          <tr>
-            <th id="ing-no-7">7.</th>
-            <td id="ing-name-7"></td>
-            <td id="ing-qty-7"></td>
-          </tr>
-         </tbody>
-      </table>
-
-      <h4 class="title is-4">Instructions</h4>
-      <p>Glass: <span id=glass-type></span></p>
-      <p id=instructions></p>
-<button id="random-button">Random Drink</button>
-
-<!-- Drop Down -->
-
-<form>
-
-  <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
-<div class="control">
-  <label class="radio">
-    <input type="radio" class="search-type" name="type" value="by-drink" checked>
-    Drink Name
-  </label>
-  <label class="radio">
-    <input type="radio" class="search-type" name="type" value="by-ingredient">
-    Ingredient
-  </label>
-</div>
-
-<button class="button" id="search-button">Search</button>
-
-</form>
+    <section class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">
+            Trivia Night
+          </p>
+          <p class="subtitle">
+            Drinks and trivia for at-home fun
+          </p>
+        </div>
+    </section>
+      
+    <nav class="navbar has-background-primary-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+        
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Random Cocktail
+            </a>
+      
+            <a class="navbar-item">
+              Random Question
+            </a>
+      
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Question Categories
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  Entertainment
+                </a>
+                <a class="navbar-item">
+                  History
+                </a>
+                <a class="navbar-item">
+                  Science
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              
+            </div>
+          </div>
+        </div>
+    </nav>
 
 
+    <div class="columns">
+        <div class="column is-3 has-background-success-light">
+
+<!-- Search From JCO to add 6/12-->
+<!-- Search and hile buttons -->
+          <div class="coctail-buttons">
+            <button class="button is-primary is-rounded" id="random-button">New Cocktail</button>
+            <button class="button is-primary is-rounded" id="hide-drinks-section">Hide</button>
+          </div>
+
+          <form>
+            <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
+          <div class="control">
+            <label class="radio">
+              <input type="radio" class="search-type" name="type" value="by-drink" checked>
+              Drink Name
+            </label>
+            <label class="radio">
+              <input type="radio" class="search-type" name="type" value="by-ingredient">
+              Ingredient
+            </label>
+          </div>
+          <button class="button is-primary is-rounded" id="search-button">Search</button>
+          <!-- <button id="random-button">Random Drink</button> -->
+          </form>
+<!-- /Search From JCO to add 6/12-->
+<!-- Cocktail info JCO to add 6/12 -->
+
+              <h4 class="title is-4" id="drink-name"></h4>
+              <figure class="image is-128x128">
+              <img id="img-thumb" src="https://bulma.io/images/placeholders/128x128.png">
+              </figure>
+              <h4 class="title is-4">Ingredients</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><abbr title="ingredient-number">No.</abbr></th>
+                    <th><abbr title="ingredient-name">Ingredient</abbr></th>   
+                    <th><abbr title="ingredient-quantity">Quantity</abbr></th>            
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th id="ing-no-1">1.</th>
+                    <td id="ing-name-1"></td>
+                    <td id="ing-qty-1"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-2">2.</th>
+                    <td id="ing-name-2"></td>
+                    <td id="ing-qty-2"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-3">3.</th>
+                    <td id="ing-name-3"></td>
+                    <td id="ing-qty-3"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-4">4.</th>
+                    <td id="ing-name-4"></td>
+                    <td id="ing-qty-4"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-5">5.</th>
+                    <td id="ing-name-5"></td>
+                    <td id="ing-qty-5"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-6">6.</th>
+                    <td id="ing-name-6"></td>
+                    <td id="ing-qty-6"></td>
+                  </tr>
+                  <tr>
+                    <th id="ing-no-7">7.</th>
+                    <td id="ing-name-7"></td>
+                    <td id="ing-qty-7"></td>
+                  </tr>
+                 </tbody>
+              </table>
+
+              <h4 class="title is-4">Instructions</h4>
+              <p>Glass: <span id=glass-type></span></p>
+              <p id=instructions></p>
+<!-- /Cocktail info: JCO to add 6/12  -->
+        </div>
 
 
-</main>
 
+        <div class="column is-9 has-background-info-dark">
+
+          <div class="container">
+            <div id="question-container" class="hide">
+                <div id="question">
+                  <h1 id="question-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                    Voluptas perferendis ab rem eaque distinctio quisquam exercitationem nostrum, 
+                    odio repellat consequatur fugiat blanditiis nulla vitae voluptatibus quo. 
+                    Dolores explicabo maxime voluptatibus.</h1>
+                </div>
+
+                <div id="answers-text">
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                </div>
+
+                <hr>
+                <div id="team-buttons" class="btn-column">
+                    <button class="btn" id = "teamOne">Team 1</button>
+                    <button class="btn" id = "teamTwo">Team 2</button>
+                    <button class="btn" id = "teamThree">Team 3</button>
+                    <button class="btn" id = "teamFour">Team 4</button>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="scores">
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+    </div>
+      
+
+
+<!--
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Hello World
+      </h1>
+      <p class="subtitle">
+        My first website with <strong>Bulma</strong>!
+      </p>
+    </div>
+  </section>
+
+
+  <div class="columns">
+    <div class="column">Auto</div>
+    <div class="column is-three-quarters has-background-primary-dark">is-three-quarters</div>
+  </div>
+-->
+
+
+<!-- Drink Modal JCO to add 6/12-->
 <div class="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -121,10 +270,12 @@
     </footer>
   </div>
 </div>
+<!-- /Drink Modal JCO to add 6/12-->
 
+<!-- Script JCO to add 6/12-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./assets/drinks.js"></script>  
+<!-- /Script JCO to add 6/12-->
 
-
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="./assets/drinks.js"></script>    
-</body>
+  </body>
 </html>
