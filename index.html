@@ -148,39 +148,77 @@
               <!-- The Instructions change with Javascript -->
               <p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>
             </div>
-
+            <div class="block"></div>
             <!-- These buttons are shown or hidden by Javascript -->
-            <button id="new-question-button" class="button is-info">New Question</button>
-            <button id="reveal-button" class="button is-info">Reveal Answer</button>
-            <button id="tally-button" class="button is-info is-hidden">Tally Points</button>
-
+            <div class="container is-flex is-justify-content-space-evenly">
+              <button id="reveal-button" class="button is-info">Reveal Answer</button>
+              <button id="new-question-button" class="button is-info">New Question</button>
+              <button id="tally-button" class="button is-info is-hidden">Tally Points</button>  
+            </div>
           </div>
 
-          <div id="team-buttons" class="btn-column">
-            <button class="button team-label" id = "teamOne">Team 1</button>
-            <button class="button team-label" id = "teamTwo">Team 2</button>
-            <button class="button team-label" id = "teamThree">Team 3</button>
-            <button class="button team-label" id = "teamFour">Team 4</button>
+          <div id="team-and-score" class="container columns">
+
+            <div id="team-buttons" class="btn-column column is-two-thirds">
+              <button class="button team-label" id = "teamOne">Team 1</button>
+              <button class="button team-label" id = "teamTwo">Team 2</button>
+              <button class="button team-label" id = "teamThree">Team 3</button>
+              <button class="button team-label" id = "teamFour">Team 4</button>
+            </div>
+
+            <div id="score-box" class="box column">
+              <h3>Score</h3>
+              <!-- Scores automatically populated by JS -->
+            </div>
+  
           </div>
         </div>
 
 
-          <div id="score-box" class="box is-pulled-right">
-            <!-- Scores automatically populated by JS -->
-          </div>
     </div>
 
-    <!-- BEGIN TRIVIA MODAL SECTION -->
+    <!-- BEGIN SETTINGS MODAL SECTION -->
     <div class="modal" id="trivia-settings">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Trivia Settings</p>
+          <p class="modal-card-title">Settings</p>
           <button id="settings-cancel" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-          Trivia Settings go here!
+          <!-- Modal Content Area -->
+          <label for="question-type">Pull Questions from Category:</label>
+          <div id="question-type" class="select">
+            <select>
+              <option value="">All Categories</option>
+              <option value="9">General Knowledge</option>
+              <option value="10">Entertainment: Books</option>
+              <option value="11">Entertainment: Film</option>
+              <option value="12">Entertainment: Music</option>
+              <option value="13">Entertainment: Musicals & Theatres</option>
+              <option value="14">Entertainment: Television</option>
+              <option value="15">Entertainment: Video Games</option>
+              <option value="16">Entertainment: Board Games</option>
+              <option value="29">Entertainment: Comics</option>
+              <option value="31">Entertainment: Japanese Anime & Manga</option>
+              <option value="32">Entertainment: Cartoon & Animations</option>
+              <option value="17">Science & Nature</option>
+              <option value="18">Science: Computers</option>
+              <option value="19">Science: Mathematics</option>
+              <option value="30">Science: Gadgets</option>
+              <option value="20">Mythology</option>
+              <option value="21">Sports</option>
+              <option value="22">Geography</option>
+              <option value="23">History</option>
+              <option value="24">Politics</option>
+              <option value="25">Art</option>
+              <option value="26">Celebrities</option>
+              <option value="27">Animals</option>
+              <option value="28">Vehicles</option>  
+            </select>
+          </div>  
         </section>
+          <!-- End Modal Content Area -->
         <footer class="modal-card-foot">
           <button id="settings-save" class="button is-success">Save Changes</button>
         </footer>
