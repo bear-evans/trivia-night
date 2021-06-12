@@ -24,11 +24,18 @@ var triviaGame = (function () {
   // grabs a question (and possibly a session token) and processes it for other functions
   async function getQuestion() {
     let token = await getToken();
-
     let prefs = getSettings();
-    // TODO: Parse the settings returned and add as parameters
-
     let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
+
+    if (prefs.category != "") {
+        apiUrl = apiUrl + "&category=" + prefs.category;
+    }
+    if (prefs.difficulty != "") {
+        apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
+    }
+    if (prefs.type != "") {
+        apiUrl = apiUrl + "&type=" + prefs.type;
+    }
 
     fetch(apiUrl)
       .then((response) => {
@@ -39,11 +46,11 @@ var triviaGame = (function () {
         return response.json();
       })
       .then((data) => {
-        console.log(data); //TODO: Remove this
         let question = data.results[0].question;
         let type = data.results[0].type;
         let correct = data.results[0].correct_answer;
         let answers = data.results[0].incorrect_answers;
+
         // parses data and sends them to the appropriate functions
         printQuestion(question, type);
         printAnswers(correct, answers);
@@ -245,6 +252,14 @@ var triviaGame = (function () {
   function showModal() {
     $("html").addClass("is-clipped");
     $("#trivia-settings").addClass("is-active");
+
+    let prefs = getSettings();
+
+    if (prefs == null) {return};
+    $("#question-category").val(prefs.category).change();
+    $("#question-difficulty").val(prefs.difficulty).change();
+    $("#question-type").val(prefs.type).change();
+
   }
 
   // Handles closing the modal
@@ -261,12 +276,23 @@ var triviaGame = (function () {
 
   // Saves parameters to memory
   function setSettings() {
-    // TODO: Save settings
+    let category = $("#question-category").val();
+    let difficulty = $("#question-difficulty").val();
+    let type = $("#question-type").val();
+
+    let settings = {
+        category: category,
+        difficulty: difficulty,
+        type: type
+    }
+
+    localStorage.setItem("trivia-settings", JSON.stringify(settings));
   }
 
   // loads parameters from memory for the API calls
   function getSettings() {
-    // TODO: Load settings from memory
+      let settings = JSON.parse(localStorage.getItem("trivia-settings"));
+      return settings;
   }
 
   // Expose any functions needed outside
