@@ -1,12 +1,7 @@
-// ingredient list: https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
-// Search by ingredient: www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin
+// Show Random Drink when page loads
+randomDrink();
 
-// By ID www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
-
-// Search cocktail by name www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
-
-
-var drinkID;
+var drinkID=0;
 var drinkData = {};
 
 // Events Button Hide
@@ -14,7 +9,19 @@ var hideButton = $("#hide-drinks-button");
 hideButton.on("click", function (event) {
   event.preventDefault();
 $('#drinks-section').attr("style", "display:none");
-alert("test");
+$('#show-drinks-button').removeAttr("style");
+$('.columns').children().eq(1).removeClass('is-9').addClass('is-12');
+// alert("test");
+});
+
+// Events Button Show
+var showButton = $("#show-drinks-button");
+showButton.on("click", function (event) {
+  event.preventDefault();
+$('#drinks-section').removeAttr("style");
+$('#show-drinks-button').attr("style", "display:none");
+$('.columns').children().eq(1).removeClass('is-12').addClass('is-9');
+// alert("test");
 });
 
 
@@ -295,3 +302,10 @@ function selectionList(titleText) {
     console.log(i);
   }
 } 
+
+
+/* For reference only */
+// ingredient list: https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
+// Search by ingredient: www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin
+// By ID www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
+// Search cocktail by name www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
