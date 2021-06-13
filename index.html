@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trivia Night!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-
-  <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
   </head>
   <body>
 
@@ -21,7 +21,7 @@
         </div>
     </section>
       
-    <nav class="navbar has-background-primary-dark" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
         
       
@@ -158,13 +158,13 @@
 
 
 <!-- Main Trivia Container -->
-        <div class="column is-9 has-background-info-dark">
+        <div class="column is-9">
           <div class="block"></div>
           <div class="container">
           <!-- Trivia Question Card -->
 
           <div id="question-container" class="card">
-              <div id="question-header" class="card-header has-background-info">
+              <div id="question-header" class="card-header has-background-primary">
                 <!-- Header is populated by JS -->
               </div>
 
@@ -186,9 +186,9 @@
             <div class="block"></div>
             <!-- These buttons are shown or hidden by Javascript -->
             <div class="container is-flex is-justify-content-space-evenly">
-              <button id="reveal-button" class="button is-info">Reveal Answer</button>
-              <button id="new-question-button" class="button is-info">New Question</button>
-              <button id="tally-button" class="button is-info is-hidden">Tally Points</button>  
+              <button id="reveal-button" class="button is-primary">Reveal Answer</button>
+              <button id="new-question-button" class="button is-primary">New Question</button>
+              <button id="tally-button" class="button is-danger is-hidden">Tally Points</button>  
             </div>
           </div>
 
@@ -222,38 +222,68 @@
         </header>
         <section class="modal-card-body">
           <!-- Modal Content Area -->
-          <label for="question-type">Pull Questions from Category:</label>
-          <div id="question-type" class="select">
-            <select>
-              <option value="">All Categories</option>
-              <option value="9">General Knowledge</option>
-              <option value="10">Entertainment: Books</option>
-              <option value="11">Entertainment: Film</option>
-              <option value="12">Entertainment: Music</option>
-              <option value="13">Entertainment: Musicals & Theatres</option>
-              <option value="14">Entertainment: Television</option>
-              <option value="15">Entertainment: Video Games</option>
-              <option value="16">Entertainment: Board Games</option>
-              <option value="29">Entertainment: Comics</option>
-              <option value="31">Entertainment: Japanese Anime & Manga</option>
-              <option value="32">Entertainment: Cartoon & Animations</option>
-              <option value="17">Science & Nature</option>
-              <option value="18">Science: Computers</option>
-              <option value="19">Science: Mathematics</option>
-              <option value="30">Science: Gadgets</option>
-              <option value="20">Mythology</option>
-              <option value="21">Sports</option>
-              <option value="22">Geography</option>
-              <option value="23">History</option>
-              <option value="24">Politics</option>
-              <option value="25">Art</option>
-              <option value="26">Celebrities</option>
-              <option value="27">Animals</option>
-              <option value="28">Vehicles</option>  
-            </select>
-          </div>  
-        </section>
+
+          <!-- Question Category Selector -->
+          <div class="field">
+            <label for="question-category" class="label">Pull Questions from Category:</label>
+            <div class="select">
+              <select id="question-category">
+                <option value="">All Categories</option>
+                <option value="9">General Knowledge</option>
+                <option value="10">Entertainment: Books</option>
+                <option value="11">Entertainment: Film</option>
+                <option value="12">Entertainment: Music</option>
+                <option value="13">Entertainment: Musicals & Theatres</option>
+                <option value="14">Entertainment: Television</option>
+                <option value="15">Entertainment: Video Games</option>
+                <option value="16">Entertainment: Board Games</option>
+                <option value="29">Entertainment: Comics</option>
+                <option value="31">Entertainment: Japanese Anime & Manga</option>
+                <option value="32">Entertainment: Cartoon & Animations</option>
+                <option value="17">Science & Nature</option>
+                <option value="18">Science: Computers</option>
+                <option value="19">Science: Mathematics</option>
+                <option value="30">Science: Gadgets</option>
+                <option value="20">Mythology</option>
+                <option value="21">Sports</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="24">Politics</option>
+                <option value="25">Art</option>
+                <option value="26">Celebrities</option>
+                <option value="27">Animals</option>
+                <option value="28">Vehicles</option>  
+              </select>
+            </div>    
+          </div>
+
+          <!-- Question Difficulty Selector -->
+          <div class="field">
+            <label for="question-difficulty" class="label">Question Difficulty:</label>
+            <div class="select">
+              <select id="question-difficulty">
+                <option value="">Any Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>  
+          </div>
+
+          <!-- Question Type Selector -->
+          <div class="field">
+            <label for="question-type" class="label">Question Type:</label>
+            <div class="select">
+              <select id="question-type">
+                <option value="">Any Type</option>
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">True or False</option>
+              </select>
+            </div>  
+          </div>
+
           <!-- End Modal Content Area -->
+        </section>
         <footer class="modal-card-foot">
           <button id="settings-save" class="button is-success">Save Changes</button>
         </footer>
