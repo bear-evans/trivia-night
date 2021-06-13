@@ -5,8 +5,19 @@
 
 // Search cocktail by name www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
 
+
 var drinkID;
 var drinkData = {};
+
+// Events Button Hide
+var hideButton = $("#hide-drinks-button");
+hideButton.on("click", function (event) {
+  event.preventDefault();
+$('#drinks-section').attr("style", "display:none");
+alert("test");
+});
+
+
 
 // Events Button Random
 var randomButton = $("#random-button");
@@ -116,14 +127,62 @@ function renderDrink(data) {
   console.log(data.drinks[drinkID].strGlass); //Glass
   $("#glass-type").text(data.drinks[drinkID].strGlass);
 
+
+  var ingredientNumber; 
+  var measureNumber;
+  $('#ingredient-table-body').empty();
+  for (var i=1; i<16; i++){
+    ingredientNumber="strIngredient"+i;
+    measureNumber="strMeasure"+i;
+
+    // debug
+    console.log("ingNumber" + ingredientNumber);
+    console.log("ingNumber" + measureNumber);
+
+
+
+    if (data.drinks[drinkID][ingredientNumber]!=null){
+
+
+      // Create Table
+
+      $('#ingredient-table-body').append($('<tr><td></td><td></td></tr>')); //Removed left header row (ing number)
+      $('#ingredient-table-body').children().eq(i-1).attr('id', "ing-row-"+i);
+      // $('#ingredient-table-body').children().eq(i-1).children().eq(0).attr('id', "ing-no-"+i).text(i);
+      $('#ingredient-table-body').children().eq(i-1).children().eq(0).attr('id', "ing-qty-"+i).text(i);
+      $('#ingredient-table-body').children().eq(i-1).children().eq(1).attr('id', "ing-name-"+i).text(i);
+
+      // add text
+      $("#ing-name-"+i).text(data.drinks[drinkID][ingredientNumber]);
+          // debug
+      console.log("ing: " + ingredientNumber + " " + data.drinks[drinkID][ingredientNumber]);
+
+    }
+    else {
+      break;
+    }
+
+    // Fill Measure
+    if (data.drinks[drinkID][measureNumber]!=null){
+      $("#ing-qty-"+i).text(data.drinks[drinkID][measureNumber]);
+
+          // debug
+      console.log("measure: " + measureNumber + " " + data.drinks[drinkID][measureNumber]);
+    }
+    else {
+      $("#ing-qty-"+i).text("See Instructions");
+    }
+
+  }
+
   // console.log(data.drinks[drinkID].strIngredient1);
-  $("#ing-name-1").text(data.drinks[drinkID].strIngredient1);
+  // $("#ing-name-1").text(data.drinks[drinkID].strIngredient1);
 
   // console.log(data.drinks[drinkID].strIngredient2);
-  $("#ing-name-2").text(data.drinks[drinkID].strIngredient2);
+  // $("#ing-name-2").text(data.drinks[drinkID].strIngredient2);
 
   // console.log(data.drinks[drinkID].strIngredient3);
-  $("#ing-name-3").text(data.drinks[drinkID].strIngredient3);
+  // $("#ing-name-3").text(data.drinks[drinkID].strIngredient3);
 
   // console.log(data.drinks[0].strIngredient4);
   // console.log(data.drinks[0].strIngredient5);
@@ -139,13 +198,13 @@ function renderDrink(data) {
   // console.log(data.drinks[0].strIngredient15);
 
   // console.log(data.drinks[drinkID].strMeasure1);
-  $("#ing-qty-1").text(data.drinks[drinkID].strMeasure1);
+  // $("#ing-qty-1").text(data.drinks[drinkID].strMeasure1);
 
   // console.log(data.drinks[drinkID].strMeasure2);
-  $("#ing-qty-2").text(data.drinks[drinkID].strMeasure2);
+  // $("#ing-qty-2").text(data.drinks[drinkID].strMeasure2);
 
   // console.log(data.drinks[drinkID].strMeasure3);
-  $("#ing-qty-3").text(data.drinks[drinkID].strMeasure3);
+  // $("#ing-qty-3").text(data.drinks[drinkID].strMeasure3);
 
   // console.log(data.drinks[0].strMeasure4);
   // console.log(data.drinks[0].strMeasure5);
@@ -197,11 +256,13 @@ document.addEventListener("click", function (event) { // <----- check code
   event.preventDefault();
   var targetClicked = event.target;
   drinkID = targetClicked.id;
-  // var selection = event.target.innerText;
-  // toLocalstorage(selectedCity);
-  // console.log("Target Clicked: " + selectedCity);
-  // $('#current-city').text(selectedCity);
+  if (drinkID<10){
   drinkID = drinkID.charAt(7);
+  }
+  else{
+    drinkID = drinkID.charAt(7) + drinkID.charAt(8);
+    console.log("Drink ID: " + drinkID);
+  }
   drinkID = parseInt(drinkID);
   console.log(drinkID);
   removeModal();
@@ -221,14 +282,16 @@ document.addEventListener("click", function (event) { // <----- check code
 // Show options in Modal
 function selectionList(titleText) {
   $("#drink-modal-title").text(titleText);
+  $( "#modal-list").empty();
+  console.log("ID Data Drinks Length:" + drinkData.drinks.length);
   for (var i = 0; i < drinkData.drinks.length; i++) {
-    // listItem=$("<li></li>").text("Text.");
-    // $('modal-list').append(listItem);
+  $('#modal-list').append($('<li><button>x</button></li>'));
+  idForButton=("select-"+i);
+  $('#modal-list').children().eq(i).children().first().addClass('button is-text selection').attr('id', idForButton).text(drinkData.drinks[i].strDrink);
+  // $('#modal-list').children().eq(i).children().first().text(drinkData.drinks[i].strDrink);
 
-    // $('#modallist', '#button').attr('id', 'value');
+    // $("#select-" + i).text(drinkData.drinks[i].strDrink);
 
-    $("#select-" + [i]).text(drinkData.drinks[i].strDrink)
-
-
+    console.log(i);
   }
-}
+} 
