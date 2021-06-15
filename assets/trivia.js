@@ -204,6 +204,7 @@ var triviaGame = (function () {
     renderScores();
   }
 
+  // Handles rendering of the scores to the score box
   function renderScores() {
     let scoreBox = $("#score-box");
 
