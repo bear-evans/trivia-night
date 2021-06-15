@@ -29,14 +29,16 @@ var triviaGame = (function () {
     let prefs = getSettings();
     let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
 
-    if (prefs.category != "") {
-      apiUrl = apiUrl + "&category=" + prefs.category;
-    }
-    if (prefs.difficulty != "") {
-      apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
-    }
-    if (prefs.type != "") {
-      apiUrl = apiUrl + "&type=" + prefs.type;
+    if (prefs != null) {
+      if (prefs.category != "") {
+        apiUrl = apiUrl + "&category=" + prefs.category;
+      }
+      if (prefs.difficulty != "") {
+        apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
+      }
+      if (prefs.type != "") {
+        apiUrl = apiUrl + "&type=" + prefs.type;
+      }
     }
 
     console.log(apiUrl);
@@ -198,6 +200,10 @@ var triviaGame = (function () {
   // loads scores from memory
   function loadState() {
     let data = JSON.parse(localStorage.getItem("trivia-data"));
+    if (data == null) {
+      renderScores();
+      return;
+    }
     qNum = data.number;
     scores = data.score;
     apiToken = data.token;
