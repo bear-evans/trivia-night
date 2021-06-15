@@ -21,6 +21,8 @@
         </div>
                 <!-- Need to find a place for this button -->
                 <button class="button is-primary is-rounded" id="show-drinks-button">Show Drinks</button>
+                <button class="button is-primary is-rounded" id="hide-drinks-button">Hide Drinks</button>
+
                 <!-- Need to find a place for this button -->
     </section>
 
@@ -76,61 +78,79 @@
 
     <div class="columns">
 
-        <div class="column is-3 has-background-success-light" id="drinks-section">
+        <div class="column is-3 has-background-dark" id="drinks-section">
 
 <!-- Search From JCO to add 6/12-->
-<!-- Search and hile buttons -->
-          <div class="coctail-buttons">
-            <button class="button is-primary is-rounded" id="random-button">New Cocktail</button>
-            <button class="button is-primary is-rounded" id="hide-drinks-button">Hide Drinks</button>
-          </div>
 
-          <form>
-            <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" class="search-type" name="type" value="by-drink" checked>
-              Drink Name
-            </label>
-            <label class="radio">
-              <input type="radio" class="search-type" name="type" value="by-ingredient">
-              Main Ingredient
-            </label>
-          </div>
-          <button class="button is-primary is-rounded" id="search-button">Search</button>
-          <!-- <button id="random-button">Random Drink</button> -->
-          </form>
-<!-- /Search From JCO to add 6/12-->
-<!-- Cocktail info JCO to add 6/12 -->
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-parent is-12">
 
-              <h4 class="title is-4" id="drink-name"></h4>
-              <figure class="image is-128x128">
-              <img id="img-thumb" src="https://bulma.io/images/placeholders/128x128.png">
-              </figure>
-              <h4 class="title is-4">Ingredients</h4>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <!-- <th><abbr title="ingredient-number">No.</abbr></th> -->
-                    <th><abbr title="ingredient-name">Quantity</abbr></th>
-                    <th><abbr title="ingredient-quantity">Ingredient</abbr></th>
-                  </tr>
-                </thead>
-                <tbody id="ingredient-table-body">
-                  <!-- <tr>
-                    <th id="ing-no-1">1.</th>
-                    <td id="ing-name-1"></td>
-                    <td id="ing-qty-1"></td>
-                  </tr> -->
+    <div class="coctail-buttons">
+      <button class="button is-light is-rounded is-medium" id="random-button">Random Cocktail</button>
+    </div>
 
-                 </tbody>
-              </table>
+    <!-- <article  class="tile is-child box notification is-dark is-12">
 
-              <h4 class="title is-4">Instructions</h4>
-              <p>Glass: <span id=glass-type></span></p>
-              <p id=instructions></p>
-<!-- /Cocktail info: JCO to add 6/12  -->
+    </article > -->
+
+    <article  class="tile is-child box notification is-dark is-12">
+      <div class="cocktail-name">
+        <h3 class="title is-3" id="drink-name"></h3>
+      </div>
+    </article >
+
+    <article class="tile is-child box notification is-dark is-12">
+
+      <div id="image-container">
+      <figure class="drink-thumb image is-256x256">
+      <img id="img-thumb" src="https://bulma.io/images/placeholders/256x256.png">
+      </figure>
+      </div>
+    </article >
+      <article  class="tile is-child box notification is-dark is-12">
+      <h4 class="title is-4">Instructions</h4>
+      <p class="instructions">Use glass type: <span id=glass-type></span></p><br>
+      <p class="instructions" id="instructions"></p>
+      </article >
+
+    <article  class="tile is-child box notification is-dark is-12">
+      <h4 class="title is-4">Ingredients</h4>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th><abbr title="ingredient-name">Quantity</abbr></th>   
+            <th><abbr title="ingredient-quantity">Ingredient</abbr></th>            
+          </tr>
+        </thead>
+        <tbody id="ingredient-table-body">
+        </tbody>
+      </table>
+    </article >
+
+    <article  class="tile is-child box notification is-dark is-12">
+      <h4 class="title is-4">Looking for a specific cocktail?</h4>
+      <div class="search-form">        
+        <div>
+          <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
+          <button class="button is-light" id="search-button">Search</button>
         </div>
+        <div class="control">
+          <p class="has-text-white-ter">Search by: <label class="radio">
+            <input type="radio" class="search-type" name="type" value="by-drink" checked>
+            Drink Name
+          </label>
+          <label class="radio">
+            <input type="radio" class="search-type" name="type" value="by-ingredient">
+            Main Ingredient
+          </label></p>
+        </div>  
+      </div>
+    </article >
+  </div>
+</div>
+
+
+</div>
 
 
 <!-- Main Trivia Container -->
