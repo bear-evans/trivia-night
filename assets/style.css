@@ -1,5 +1,5 @@
 body {
-  background-image: url("../assets/images/wood.jpg");
+  background-image: url("../assets/images/wood-light-blur.jpg");
   background-size: cover;
 }
 
@@ -50,4 +50,24 @@ div#team-buttons {
 
 .scores {
   margin: 200px;
+}
+
+.hero-body.has-text-centered {
+  display: flex;
+  justify-content: space-around;
+}
+
+p.cocktails {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+p.trivia-settings {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+div#team-buttons button {
+  margin: 15px;
+  border-radius: 20px;
 }
