@@ -19,6 +19,9 @@
             Drinks and trivia for at-home fun
           </p>
         </div>
+                <!-- Need to find a place for this button -->
+                <button class="button is-primary is-rounded" id="show-drinks-button">Show Drinks</button>
+                <!-- Need to find a place for this button -->
     </section>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -67,17 +70,19 @@
             </div>
           </div>
         </div>
+
     </nav>
 
 
     <div class="columns">
-        <div class="column is-3 has-background-success-light" id="driks-section">
+
+        <div class="column is-3 has-background-success-light" id="drinks-section">
 
 <!-- Search From JCO to add 6/12-->
 <!-- Search and hile buttons -->
           <div class="coctail-buttons">
             <button class="button is-primary is-rounded" id="random-button">New Cocktail</button>
-            <button class="button is-primary is-rounded" id="hide-drinks-button">Hide</button>
+            <button class="button is-primary is-rounded" id="hide-drinks-button">Hide Drinks</button>
           </div>
 
           <form>
@@ -89,7 +94,7 @@
             </label>
             <label class="radio">
               <input type="radio" class="search-type" name="type" value="by-ingredient">
-              Ingredient
+              Main Ingredient
             </label>
           </div>
           <button class="button is-primary is-rounded" id="search-button">Search</button>
@@ -106,47 +111,18 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th><abbr title="ingredient-number">No.</abbr></th>
-                    <th><abbr title="ingredient-name">Ingredient</abbr></th>
-                    <th><abbr title="ingredient-quantity">Quantity</abbr></th>
+                    <!-- <th><abbr title="ingredient-number">No.</abbr></th> -->
+                    <th><abbr title="ingredient-name">Quantity</abbr></th>   
+                    <th><abbr title="ingredient-quantity">Ingredient</abbr></th>            
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+                <tbody id="ingredient-table-body">
+                  <!-- <tr>
                     <th id="ing-no-1">1.</th>
                     <td id="ing-name-1"></td>
                     <td id="ing-qty-1"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-2">2.</th>
-                    <td id="ing-name-2"></td>
-                    <td id="ing-qty-2"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-3">3.</th>
-                    <td id="ing-name-3"></td>
-                    <td id="ing-qty-3"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-4">4.</th>
-                    <td id="ing-name-4"></td>
-                    <td id="ing-qty-4"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-5">5.</th>
-                    <td id="ing-name-5"></td>
-                    <td id="ing-qty-5"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-6">6.</th>
-                    <td id="ing-name-6"></td>
-                    <td id="ing-qty-6"></td>
-                  </tr>
-                  <tr>
-                    <th id="ing-no-7">7.</th>
-                    <td id="ing-name-7"></td>
-                    <td id="ing-qty-7"></td>
-                  </tr>
+                  </tr> -->
+
                  </tbody>
               </table>
 
@@ -324,10 +300,10 @@
       <!-- Content ... -->
       <ul id="modal-list">
         <li><button class="button is-text selection" id="select-0"></button></li>
-        <li><button class="button is-text selection" id="select-1"></button></li>
+        <!-- <li><button class="button is-text selection" id="select-1"></button></li>
         <li><button class="button is-text selection" id="select-2"></button></li>
         <li><button class="button is-text selection" id="select-3"></button></li>
-        <li><button class="button is-text selection" id="select-4"></button></li>
+        <li><button class="button is-text selection" id="select-4"></button></li> -->
       </ul>
 
 
