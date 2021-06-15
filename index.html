@@ -20,33 +20,33 @@
           </p>
         </div>
     </section>
-      
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-        
-      
+
+
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-      
+
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
             <a class="navbar-item">
               Random Cocktail
             </a>
-      
+
             <a id="settings-show" class="navbar-item">
               Trivia Settings
             </a>
-      
+
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
                 Question Categories
               </a>
-      
+
               <div class="navbar-dropdown">
                 <a class="navbar-item">
                   Entertainment
@@ -60,10 +60,10 @@
               </div>
             </div>
           </div>
-      
+
           <div class="navbar-end">
             <div class="navbar-item">
-              
+
             </div>
           </div>
         </div>
@@ -107,8 +107,8 @@
                 <thead>
                   <tr>
                     <th><abbr title="ingredient-number">No.</abbr></th>
-                    <th><abbr title="ingredient-name">Ingredient</abbr></th>   
-                    <th><abbr title="ingredient-quantity">Quantity</abbr></th>            
+                    <th><abbr title="ingredient-name">Ingredient</abbr></th>
+                    <th><abbr title="ingredient-quantity">Quantity</abbr></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -188,7 +188,7 @@
             <div class="container is-flex is-justify-content-space-evenly">
               <button id="reveal-button" class="button is-primary">Reveal Answer</button>
               <button id="new-question-button" class="button is-primary">New Question</button>
-              <button id="tally-button" class="button is-danger is-hidden">Tally Points</button>  
+              <button id="tally-button" class="button is-danger is-hidden">Tally Points</button>
             </div>
           </div>
 
@@ -205,7 +205,7 @@
               <h3>Score</h3>
               <!-- Scores automatically populated by JS -->
             </div>
-  
+
           </div>
         </div>
 
@@ -252,9 +252,9 @@
                 <option value="25">Art</option>
                 <option value="26">Celebrities</option>
                 <option value="27">Animals</option>
-                <option value="28">Vehicles</option>  
+                <option value="28">Vehicles</option>
               </select>
-            </div>    
+            </div>
           </div>
 
           <!-- Question Difficulty Selector -->
@@ -267,7 +267,7 @@
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
-            </div>  
+            </div>
           </div>
 
           <!-- Question Type Selector -->
@@ -279,13 +279,14 @@
                 <option value="multiple">Multiple Choice</option>
                 <option value="boolean">True or False</option>
               </select>
-            </div>  
+            </div>
           </div>
 
           <!-- End Modal Content Area -->
         </section>
         <footer class="modal-card-foot">
           <button id="settings-save" class="button is-success">Save Changes</button>
+          <button id="reset-trivia" class="button is-danger">Reset Game</button>
         </footer>
       </div>
     </div>
@@ -340,6 +341,6 @@
 <!-- /Drink Modal JCO to add 6/12-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="assets/trivia.js"></script>
-  <script src="./assets/drinks.js"></script> 
+  <script src="./assets/drinks.js"></script>
   </body>
 </html>

@@ -7,7 +7,6 @@ var triviaGame = (function () {
   var apiToken = "";
   let qNum = 0;
   let scores = [0, 0, 0, 0];
-  let teamsSelect = false;
 
   // Initializes the trivia module
   function init() {
@@ -19,7 +18,7 @@ var triviaGame = (function () {
     $("#settings-cancel").on("click", closeModal);
     $("#settings-save").on("click", saveModal);
     $("#settings-show").on("click", showModal);
-    $("#trivia-reset").on("click", resetGame);
+    $("#reset-trivia").on("click", resetGame);
 
     loadState();
     getQuestion();
@@ -57,16 +56,16 @@ var triviaGame = (function () {
           getQuestion();
         } else if (data.response_code == 1) {
           $("#question-box").empty();
-          $("#question-box").append("No questions remain for these settings.")
+          $("#question-box").append("No questions remain for these settings.");
         } else {
           let question = data.results[0].question;
           let type = data.results[0].type;
           let correct = data.results[0].correct_answer;
           let answers = data.results[0].incorrect_answers;
-  
+
           // parses data and sends them to the appropriate functions
           printQuestion(question, type);
-          printAnswers(correct, answers);  
+          printAnswers(correct, answers);
         }
       })
       .catch((error) => {
@@ -165,7 +164,7 @@ var triviaGame = (function () {
     $("#tally-button").removeClass("is-hidden");
     $("#reveal-button").addClass("is-hidden");
     $("#new-question-button").addClass("is-hidden");
-    $(".team-label").prop( "disabled", false);
+    $(".team-label").prop("disabled", false);
     $("#instructions").empty();
     $("#instructions").append(
       $(
@@ -249,7 +248,7 @@ var triviaGame = (function () {
         scores[i] = scores[i] + 1;
         $(this).removeClass("is-success");
       }
-      $(".team-label").prop( "disabled", true);
+      $(".team-label").prop("disabled", true);
     });
 
     $("#tally-button").addClass("is-hidden");
@@ -301,7 +300,7 @@ var triviaGame = (function () {
     let settings = {
       category: category,
       difficulty: difficulty,
-      type: type
+      type: type,
     };
 
     localStorage.setItem("trivia-settings", JSON.stringify(settings));
@@ -315,7 +314,27 @@ var triviaGame = (function () {
 
   // Resets the game if requested
   function resetGame() {
+    // Resets all team buttons to their default values.
+    $(".team-label").each(function () {
+      $(this).removeClass("is-success");
+      $(".team-label").prop("disabled", true);
+    });
 
+    // Resets all game buttons to their default state
+    $("#tally-button").addClass("is-hidden");
+    $("#new-question-button").removeClass("is-hidden");
+    $("#reveal-button").removeClass("is-hidden");
+    $("#instructions").empty();
+    $("#instructions").append(
+      $(
+        "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
+      )
+    );
+    apiToken = "";
+    qNum = 0;
+    scores = [0, 0, 0, 0];
+    saveState();
+    getQuestion();
   }
 
   // Expose any functions needed outside
