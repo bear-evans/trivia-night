@@ -331,6 +331,8 @@ var triviaGame = (function () {
         "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
       )
     );
+
+    // clears all variables to their defaults
     apiToken = "";
     qNum = 0;
     scores = [0, 0, 0, 0];
