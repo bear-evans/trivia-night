@@ -87,3 +87,45 @@ div#team-buttons button {
 .team-score-header {
   font-family: "Staatliches", cursive;
 }
+
+
+/* Added JCO */
+
+
+
+
+
+
+
+/* .search-form{
+  padding: 20px;
+  border: solid black 2px;
+
+}
+
+.drink-info{
+  padding: 20px;
+  border: solid red 2px; 
+} */
+
+
+#search-field{
+  width: 75%;
+} 
+
+
+#search-button{
+  display: inline-flex;
+}
+.tile{
+  text-align: center;
+  align-items: center;
+}
+
+.instructions{
+  text-align: left;
+}
+
+.image{
+  text-align: center;
+}
