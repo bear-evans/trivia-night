@@ -18,6 +18,7 @@ var triviaGame = (function () {
     $("#settings-cancel").on("click", closeModal);
     $("#settings-save").on("click", saveModal);
     $("#settings-show").on("click", showModal);
+    $("#reset-trivia").on("click", resetGame);
 
     loadState();
     getQuestion();
@@ -29,14 +30,16 @@ var triviaGame = (function () {
     let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
 
     if (prefs.category != "") {
-        apiUrl = apiUrl + "&category=" + prefs.category;
+      apiUrl = apiUrl + "&category=" + prefs.category;
     }
     if (prefs.difficulty != "") {
-        apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
+      apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
     }
     if (prefs.type != "") {
-        apiUrl = apiUrl + "&type=" + prefs.type;
+      apiUrl = apiUrl + "&type=" + prefs.type;
     }
+
+    console.log(apiUrl);
 
     fetch(apiUrl)
       .then((response) => {
@@ -47,14 +50,23 @@ var triviaGame = (function () {
         return response.json();
       })
       .then((data) => {
-        let question = data.results[0].question;
-        let type = data.results[0].type;
-        let correct = data.results[0].correct_answer;
-        let answers = data.results[0].incorrect_answers;
+        if (data.response_code == 3 || data.response_code == 4) {
+          apiToken = "";
+          console.log("Token stale. Getting new one.");
+          getQuestion();
+        } else if (data.response_code == 1) {
+          $("#question-box").empty();
+          $("#question-box").append("No questions remain for these settings.");
+        } else {
+          let question = data.results[0].question;
+          let type = data.results[0].type;
+          let correct = data.results[0].correct_answer;
+          let answers = data.results[0].incorrect_answers;
 
-        // parses data and sends them to the appropriate functions
-        printQuestion(question, type);
-        printAnswers(correct, answers);
+          // parses data and sends them to the appropriate functions
+          printQuestion(question, type);
+          printAnswers(correct, answers);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -65,7 +77,7 @@ var triviaGame = (function () {
   async function getToken() {
     if (apiToken != "") {
       return apiToken; // stop if there was already a token
-    };
+    }
 
     // If there is no token, generate a new one
     let tokenUrl = "https://opentdb.com/api_token.php?command=request";
@@ -152,6 +164,7 @@ var triviaGame = (function () {
     $("#tally-button").removeClass("is-hidden");
     $("#reveal-button").addClass("is-hidden");
     $("#new-question-button").addClass("is-hidden");
+    $(".team-label").prop("disabled", false);
     $("#instructions").empty();
     $("#instructions").append(
       $(
@@ -164,7 +177,11 @@ var triviaGame = (function () {
   // This is used when tallying scores
   function toggleTeam(event) {
     event.preventDefault();
-    $(event.target).toggleClass("is-success");
+    if ($(this).prop("disabled")) {
+      return; // the button is disabled
+    } else {
+      $(event.target).toggleClass("is-success");
+    }
   }
 
   // saves the team scores and question number to memory in case of accidental closure or refresh
@@ -187,16 +204,13 @@ var triviaGame = (function () {
     renderScores();
   }
 
+  // Handles rendering of the scores to the score box
   function renderScores() {
     let scoreBox = $("#score-box");
 
     scoreBox.empty();
 
-    scoreBox.append(
-        $(
-          "<h1>Score</h1>"
-        )
-    );  
+    scoreBox.append($("<h3>Score</h3>"));
     scoreBox.append(
       $(
         "<div class='team-score'><span class='team-score-header'>Team 1:</span> " +
@@ -235,6 +249,7 @@ var triviaGame = (function () {
         scores[i] = scores[i] + 1;
         $(this).removeClass("is-success");
       }
+      $(".team-label").prop("disabled", true);
     });
 
     $("#tally-button").addClass("is-hidden");
@@ -257,11 +272,12 @@ var triviaGame = (function () {
 
     let prefs = getSettings();
 
-    if (prefs == null) {return};
+    if (prefs == null) {
+      return;
+    }
     $("#question-category").val(prefs.category).change();
     $("#question-difficulty").val(prefs.difficulty).change();
     $("#question-type").val(prefs.type).change();
-
   }
 
   // Handles closing the modal
@@ -283,18 +299,43 @@ var triviaGame = (function () {
     let type = $("#question-type").val();
 
     let settings = {
-        category: category,
-        difficulty: difficulty,
-        type: type
-    }
+      category: category,
+      difficulty: difficulty,
+      type: type,
+    };
 
     localStorage.setItem("trivia-settings", JSON.stringify(settings));
   }
 
   // loads parameters from memory for the API calls
   function getSettings() {
-      let settings = JSON.parse(localStorage.getItem("trivia-settings"));
-      return settings;
+    let settings = JSON.parse(localStorage.getItem("trivia-settings"));
+    return settings;
+  }
+
+  // Resets the game if requested
+  function resetGame() {
+    // Resets all team buttons to their default values.
+    $(".team-label").each(function () {
+      $(this).removeClass("is-success");
+      $(".team-label").prop("disabled", true);
+    });
+
+    // Resets all game buttons to their default state
+    $("#tally-button").addClass("is-hidden");
+    $("#new-question-button").removeClass("is-hidden");
+    $("#reveal-button").removeClass("is-hidden");
+    $("#instructions").empty();
+    $("#instructions").append(
+      $(
+        "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
+      )
+    );
+    apiToken = "";
+    qNum = 0;
+    scores = [0, 0, 0, 0];
+    saveState();
+    getQuestion();
   }
 
   // Expose any functions needed outside
