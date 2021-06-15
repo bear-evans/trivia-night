@@ -167,8 +167,8 @@ var triviaGame = (function () {
     $("#reveal-button").addClass("is-hidden");
     $("#new-question-button").addClass("is-hidden");
     $(".team-label").prop("disabled", false);
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>Select the teams that got it right. When you're ready, click the button to tally the scores and start the next round.</p>"
       )
@@ -261,8 +261,8 @@ var triviaGame = (function () {
     $("#tally-button").addClass("is-hidden");
     $("#new-question-button").removeClass("is-hidden");
     $("#reveal-button").removeClass("is-hidden");
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
       )
@@ -331,8 +331,8 @@ var triviaGame = (function () {
     $("#tally-button").addClass("is-hidden");
     $("#new-question-button").removeClass("is-hidden");
     $("#reveal-button").removeClass("is-hidden");
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
       )
