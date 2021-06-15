@@ -210,7 +210,7 @@ var triviaGame = (function () {
 
     scoreBox.empty();
 
-    scoreBox.append($("<h1>Score</h1>"));
+    scoreBox.append($("<h3>Score</h3>"));
     scoreBox.append(
       $(
         "<div class='team-score'><span class='team-score-header'>Team 1:</span> " +
