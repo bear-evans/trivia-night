@@ -1,5 +1,6 @@
 // Show Random Drink when page loads
 randomDrink();
+$('#show-drinks-button').attr("style", "display:none");
 
 var drinkID=0;
 var drinkData = {};
@@ -9,6 +10,7 @@ var hideButton = $("#hide-drinks-button");
 hideButton.on("click", function (event) {
   event.preventDefault();
 $('#drinks-section').attr("style", "display:none");
+$('#hide-drinks-button').attr("style", "display:none");
 $('#show-drinks-button').removeAttr("style");
 $('.columns').children().eq(1).removeClass('is-9').addClass('is-12');
 // alert("test");
@@ -20,6 +22,7 @@ showButton.on("click", function (event) {
   event.preventDefault();
 $('#drinks-section').removeAttr("style");
 $('#show-drinks-button').attr("style", "display:none");
+$('#hide-drinks-button').removeAttr("style");
 $('.columns').children().eq(1).removeClass('is-12').addClass('is-9');
 // alert("test");
 });
