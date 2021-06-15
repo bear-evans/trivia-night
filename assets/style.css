@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merienda&family=Staatliches&display=swap");
 
 body {
   background-image: url("../assets/images/wood-light-blur.jpg");
@@ -74,6 +74,10 @@ div#team-buttons button {
   border-radius: 20px;
 }
 
+.title {
+  font-family: "Merienda", cursive;
+}
+
 #score-box {
   font-size: 2em;
 }
@@ -88,14 +92,7 @@ div#team-buttons button {
   font-family: "Staatliches", cursive;
 }
 
-
 /* Added JCO */
-
-
-
-
-
-
 
 /* .search-form{
   padding: 20px;
@@ -105,27 +102,25 @@ div#team-buttons button {
 
 .drink-info{
   padding: 20px;
-  border: solid red 2px; 
+  border: solid red 2px;
 } */
 
-
-#search-field{
+#search-field {
   width: 75%;
-} 
+}
 
-
-#search-button{
+#search-button {
   display: inline-flex;
 }
-.tile{
+.tile {
   text-align: center;
   align-items: center;
 }
 
-.instructions{
+.instructions {
   text-align: left;
 }
 
-.image{
+.image {
   text-align: center;
 }
