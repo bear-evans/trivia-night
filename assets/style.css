@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
 body {
-  background-image: url("../assets/images/wood.jpg");
+  background-image: url("../assets/images/wood-light-blur.jpg");
   background-size: cover;
 }
 
@@ -52,6 +54,39 @@ div#team-buttons {
   margin: 200px;
 }
 
+.hero-body.has-text-centered {
+  display: flex;
+  justify-content: space-around;
+}
+
+p.cocktails {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+p.trivia-settings {
+  display: inline-block;
+  margin-top: 25px;
+}
+
+div#team-buttons button {
+  margin: 15px;
+  border-radius: 20px;
+}
+
+#score-box {
+  font-size: 2em;
+}
+
+#score-box h3 {
+  text-align: center;
+  font-family: "Staatliches", cursive;
+  font-size: 1.5em;
+}
+
+.team-score-header {
+  font-family: "Staatliches", cursive;
+}
 
 
 /* Added JCO */

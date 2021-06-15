@@ -10,14 +10,19 @@
   </head>
   <body>
 
-    <section class="hero is-primary">
-        <div class="hero-body">
+    <section class="hero is-primary is-small">
+        <div class="hero-body has-text-centered">
+          <p class="cocktails">
+            Cocktails
+          </p>
+
           <p class="title">
             Trivia Night
           </p>
-          <p class="subtitle">
-            Drinks and trivia for at-home fun
-          </p>
+
+          <a id="settings-show" class="navbar-item">
+            Trivia Settings
+          </a>
         </div>
                 <!-- Need to find a place for this button -->
                 <button class="button is-primary is-rounded" id="show-drinks-button">Show Drinks</button>
@@ -38,21 +43,21 @@
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
+          <!-- <div class="navbar-start">
             <a class="navbar-item">
               Random Cocktail
-            </a>
+            </a> -->
 
-            <a id="settings-show" class="navbar-item">
+            <!-- <a id="settings-show" class="navbar-item">
               Trivia Settings
-            </a>
+            </a> -->
 
-            <div class="navbar-item has-dropdown is-hoverable">
+            <!-- <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
                 Question Categories
-              </a>
+              </a> -->
 
-              <div class="navbar-dropdown">
+              <!-- <div class="navbar-dropdown">
                 <a class="navbar-item">
                   Entertainment
                 </a>
@@ -62,7 +67,7 @@
                 <a class="navbar-item">
                   Science
                 </a>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -182,9 +187,9 @@
             <div class="block"></div>
             <!-- These buttons are shown or hidden by Javascript -->
             <div class="container is-flex is-justify-content-space-evenly">
-              <button id="reveal-button" class="button is-primary">Reveal Answer</button>
-              <button id="new-question-button" class="button is-primary">New Question</button>
-              <button id="tally-button" class="button is-danger is-hidden">Tally Points</button>
+              <button id="reveal-button" class="button is-primary is-rounded">Reveal Answer</button>
+              <button id="new-question-button" class="button is-info is-rounded">New Question</button>
+              <button id="tally-button" class="button is-danger is-hidden is-rounded">Tally Points</button>
             </div>
           </div>
 
