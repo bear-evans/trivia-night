@@ -29,14 +29,16 @@ var triviaGame = (function () {
     let prefs = getSettings();
     let apiUrl = "https://opentdb.com/api.php?amount=1&token=" + token;
 
-    if (prefs.category != "") {
-      apiUrl = apiUrl + "&category=" + prefs.category;
-    }
-    if (prefs.difficulty != "") {
-      apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
-    }
-    if (prefs.type != "") {
-      apiUrl = apiUrl + "&type=" + prefs.type;
+    if (prefs != null) {
+      if (prefs.category != "") {
+        apiUrl = apiUrl + "&category=" + prefs.category;
+      }
+      if (prefs.difficulty != "") {
+        apiUrl = apiUrl + "&difficulty=" + prefs.difficulty;
+      }
+      if (prefs.type != "") {
+        apiUrl = apiUrl + "&type=" + prefs.type;
+      }
     }
 
     console.log(apiUrl);
@@ -165,8 +167,8 @@ var triviaGame = (function () {
     $("#reveal-button").addClass("is-hidden");
     $("#new-question-button").addClass("is-hidden");
     $(".team-label").prop("disabled", false);
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>Select the teams that got it right. When you're ready, click the button to tally the scores and start the next round.</p>"
       )
@@ -198,6 +200,10 @@ var triviaGame = (function () {
   // loads scores from memory
   function loadState() {
     let data = JSON.parse(localStorage.getItem("trivia-data"));
+    if (data == null) {
+      renderScores();
+      return;
+    }
     qNum = data.number;
     scores = data.score;
     apiToken = data.token;
@@ -255,8 +261,8 @@ var triviaGame = (function () {
     $("#tally-button").addClass("is-hidden");
     $("#new-question-button").removeClass("is-hidden");
     $("#reveal-button").removeClass("is-hidden");
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
       )
@@ -325,8 +331,8 @@ var triviaGame = (function () {
     $("#tally-button").addClass("is-hidden");
     $("#new-question-button").removeClass("is-hidden");
     $("#reveal-button").removeClass("is-hidden");
-    $("#instructions").empty();
-    $("#instructions").append(
+    $("#trivia-instructions").empty();
+    $("#trivia-instructions").append(
       $(
         "<p>When everyone has had the chance to write down their answer, click the button to reveal the correct one, or hit new question to get a different question.</p>"
       )
