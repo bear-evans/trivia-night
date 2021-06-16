@@ -8,9 +8,12 @@ An app for at home drinks and fun.
 ## Installation
 Clone the repo and open the folder in any code developing environment.
 ## Credits
+
 Bear Evans
 - Contact:
+
 Matthew Slanaker
 - Contact: matt.slanaker@gmail.com
+
 Juan Carlos Orozco Leon
 - Contact:
