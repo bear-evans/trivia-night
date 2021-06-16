@@ -13,20 +13,24 @@
     <section class="hero is-primary is-small">
         <div class="hero-body has-text-centered">
           <p class="cocktails">
-            Cocktails
+            <button class="button is-primary is-rounded is-warning" id="show-drinks-button">Show Drinks</button>
+            <button class="button is-primary is-rounded is-warning" id="hide-drinks-button">Hide Drinks</button>
           </p>
 
           <p class="title">
             Trivia Night
           </p>
 
-          <a id="settings-show" class="navbar-item">
+          <p class="cocktails">
+            <button class="button is-primary is-rounded is-warning" id="settings-show" class="navbar-item">Trivia Settings</button>
+          </p>
+          <!-- <a id="settings-show" class="navbar-item">
             Trivia Settings
-          </a>
+          </a> -->
         </div>
                 <!-- Need to find a place for this button -->
-                <button class="button is-primary is-rounded" id="show-drinks-button">Show Drinks</button>
-                <button class="button is-primary is-rounded" id="hide-drinks-button">Hide Drinks</button>
+                <!-- <button class="button is-primary is-rounded" id="show-drinks-button">Show Drinks</button>
+                <button class="button is-primary is-rounded" id="hide-drinks-button">Hide Drinks</button> -->
 
                 <!-- Need to find a place for this button -->
     </section>
@@ -90,21 +94,34 @@
 <div class="tile is-ancestor">
   <div class="tile is-vertical is-parent is-12">
 
-    <div class="coctail-buttons">
-      <button class="button is-light is-rounded is-medium" id="random-button">Random Cocktail</button>
-    </div>
+    <article  class="tile is-child box notification is-dark is-12">
+      <h3 class="title is-3">🥂 The Side Bar 🍺</h3>
+      <br>
+      <button class="button is-info is-rounded" id="random-button">Random Cocktail</button>
+
+    </article >
+
+    <!-- <div class="coctail-buttons">
+
+      <h4 class="title is-4">🥂 The Side Bar 🍺</h4>
+      <br>
+      <button class="button is-info is-rounded" id="random-button">Random Cocktail</button>
+    </div> -->
 
     <!-- <article  class="tile is-child box notification is-dark is-12">
 
     </article > -->
 
-    <article  class="tile is-child box notification is-dark is-12">
+    <!-- <article  class="tile is-child box notification is-dark is-12">
       <div class="cocktail-name">
         <h3 class="title is-3" id="drink-name"></h3>
       </div>
-    </article >
+    </article > -->
 
     <article class="tile is-child box notification is-dark is-12">
+      <div class="cocktail-name">
+        <h3 class="title is-3" id="drink-name"></h3>
+      </div>
 
       <div id="image-container">
       <figure class="drink-thumb image is-256x256">
@@ -137,7 +154,7 @@
       <div class="search-form">
         <div>
           <input id="search-field" class="input" type="text" placeholder="Vodka or Margarita">
-          <button class="button is-light" id="search-button">Search</button>
+          <button class="button is-info is-rounded" id="search-button">Search</button>
         </div>
         <div class="control">
           <p class="has-text-white-ter">Search by: <label class="radio">
